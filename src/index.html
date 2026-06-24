@@ -15,14 +15,14 @@
         <div class="todo__controls">
             <form class="todo__search-task-form field">
                 <label for="search-task" class="field__label">Search note...</label>
-                <input id="search-task" type="search" class="field__input">
+                <input id="search-task" type="search" class="field__input" placeholder=" ">
             </form>
-            <select name="" id="" class="field__select">
+            <select class="field__select">
                 <option value="All">All</option>
                 <option value="Complete">Complete</option>
                 <option value="Incomplete">Incomplete</option>
             </select>
-            <button class="button" type="button" aria-label="Switch theme" title="Switch theme">
+            <button class="button button--switcher" type="button" aria-label="Switch theme" title="Switch theme">
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M11.1249 0.548798C11.3387 0.917354 11.321 1.3762 11.0791 1.72705C10.3455 2.79152 9.91599 4.08062 9.91599 5.47334C9.91599 9.12428 12.8757 12.084 16.5266 12.084C17.9194 12.084 19.2085 11.6545 20.2729 10.9208C20.6238 10.6791 21.0826 10.6613 21.4512 10.8751C21.8197 11.089 22.0319 11.4962 21.9961 11.9208C21.5191 17.567 16.7867 22 11.0178 22C4.93282 22 0 17.0672 0 10.9822C0 5.21328 4.43301 0.480873 10.0792 0.00392422C10.5038 -0.0319387 10.911 0.180242 11.1249 0.548798ZM8.17985 2.63461C4.70452 3.81573 2.20355 7.10732 2.20355 10.9822C2.20355 15.8502 6.14981 19.7964 11.0178 19.7964C14.8927 19.7964 18.1843 17.2955 19.3654 13.8202C18.4741 14.1232 17.5191 14.2875 16.5266 14.2875C11.6587 14.2875 7.71244 10.3413 7.71244 5.47334C7.71244 4.48086 7.87682 3.52582 8.17985 2.63461Z"
@@ -89,8 +89,8 @@
                 class="todo__empty-image" width="221" height="214" loading="lazy">
             <p class="todo__empty-message">Empty...</p>
         </div>
-        <button class="todo__new-task-button button button--circle" type="button" aria-label="New task"
-            title="New task">
+        <button class="todo__new-task-button button button--circle" type="button" aria-label="New task" title="New task"
+            data-js-todo-new-task-button>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M10.5 22.5C10.5 22.8978 10.658 23.2794 10.9393 23.5607C11.2206 23.842 11.6022 24 12 24C12.3978 24 12.7794 23.842 13.0607 23.5607C13.342 23.2794 13.5 22.8978 13.5 22.5V13.5H22.5C22.8978 13.5 23.2794 13.342 23.5607 13.0607C23.842 12.7794 24 12.3978 24 12C24 11.6022 23.842 11.2206 23.5607 10.9393C23.2794 10.658 22.8978 10.5 22.5 10.5H13.5V1.5C13.5 1.10218 13.342 0.720644 13.0607 0.43934C12.7794 0.158035 12.3978 0 12 0C11.6022 0 11.2206 0.158035 10.9393 0.43934C10.658 0.720644 10.5 1.10218 10.5 1.5V10.5H1.5C1.10218 10.5 0.720644 10.658 0.43934 10.9393C0.158035 11.2206 0 11.6022 0 12C0 12.3978 0.158035 12.7794 0.43934 13.0607C0.720644 13.342 1.10218 13.5 1.5 13.5H10.5V22.5Z"
@@ -98,6 +98,19 @@
             </svg>
         </button>
     </div>
+    <dialog class="overlay">
+        <h2 class="overlay__title">New Note</h2>
+        <form class="overlay__new-task-form" method="dialog">
+            <div class="field">
+                <label for="new-task" class="field__label">Input your note...</label>
+                <input id="new-task" class="field__input" placeholder=" ">
+            </div>
+            <div class="overlay__actions">
+                <button class="overlay__cancel-button button button--transparent" type="button">Cancel</button>
+                <button class="overlay__apply-button button" type="submit">Apply</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 
 </html>

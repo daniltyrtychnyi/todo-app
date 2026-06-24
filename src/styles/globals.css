@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 40px 100px;
+    min-height: 710px;
+    font-family: var(--font-family-base);
+    font-weight: 500;
+    line-height: 1;
+    background-color: var(--color-light);
+}
+
+label,
+input,
+select,
+button {
+    transition-duration: var(--transition-duration);
+}
+
+:focus-visible {
+    outline: 2px dashed var(--color-dark);
+    outline-offset: 4px;
+    transition-duration: 0s !important;
+}

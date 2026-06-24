@@ -1,0 +1,40 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 22px;
+    height: var(--input-height);
+    color: var(--color-light);
+    background-color: var(--color-accent);
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 18px;
+
+    &:hover {
+        background-color: var(--color-accent-dark);
+        box-shadow: var(--box-shadow);
+    }
+}
+
+.button--switcher {
+    padding-inline: 8px;
+}
+
+.button--circle {
+    padding-inline: 13px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    border: 2px solid var(--color-accent);
+}
+
+.button--transparent {
+    color: var(--color-accent);
+    background-color: transparent;
+    border-color: var(--color-accent);
+
+    &:hover {
+        color: var(--color-light);
+    }
+}

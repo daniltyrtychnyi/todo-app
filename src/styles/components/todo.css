@@ -1,0 +1,66 @@
+.todo {
+    display: grid;
+    width: 100%;
+    max-width: 750px;
+}
+
+.todo__title {
+    font-size: 26px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.todo__controls {
+    display: flex;
+    column-gap: 16px;
+    padding-bottom: 30px;
+}
+
+.todo__search-task-form {
+    width: 100%;
+}
+
+.todo__list {
+    display: grid;
+    margin-inline: auto;
+    width: 100%;
+    max-width: 525px;
+}
+
+.todo__item {
+    display: flex;
+    align-items: center;
+    column-gap: 17px;
+
+    &:not(:first-child) {
+        padding-top: 17px;
+    }
+
+    &:not(:last-child) {
+        padding-bottom: 17px;
+        border-bottom: 1px solid rgba(108, 99, 255, 0.5);
+    }
+}
+
+.todo__empty-wrapper {
+    display: grid;
+    justify-content: center;
+    row-gap: 20px;
+
+    &:not(.is-visible) {
+        display: none;
+    }
+}
+
+.todo__empty-message {
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+}
+
+.todo__new-task-button {
+    justify-self: end;
+    margin-right: 8px;
+    translate: 0 20em;
+}

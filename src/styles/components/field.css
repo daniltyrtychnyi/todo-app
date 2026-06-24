@@ -1,0 +1,51 @@
+.field {
+    --fieldInputPaddingX: 16px;
+    --fieldInputSearchIconSize: 21px;
+
+    position: relative;
+    font-family: var(--font-family-accent);
+
+    &:has(.field__input:not(:placeholder-shown)) .field__label {
+        translate: -1.5em -2.3em;
+        scale: 0.8;
+        color: var(--color-accent);
+    }
+}
+
+.field__label {
+    position: absolute;
+    top: 50%;
+    left: var(--fieldInputPaddingX);
+    translate: 0 -50%;
+    color: var(--color-accent-light);
+    pointer-events: none;
+}
+
+.field__input {
+    width: 100%;
+    padding-inline: var(--fieldInputPaddingX);
+    height: var(--input-height);
+    color: var(--color-accent);
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    border: var(--border);
+    outline: 2px solid transparent;
+    outline-offset: 0px;
+
+    &:hover,
+    &:focus {
+        outline-color: var(--color-accent-light);
+    }
+
+    &[type="search"] {
+        &:placeholder-shown {
+            padding-right: 
+                calc((var(--fieldInputPaddingX) * 2) + var(--fieldInputSearchIconSize))
+            ;
+            background-image: url('../../images/icons/icon-search_accent.svg');
+            background-position: calc(100% - var(--fieldInputPaddingX)) 50%;
+            background-size: var(--fieldInputSearchIconSize);
+            background-repeat: no-repeat;
+        }
+    }
+}

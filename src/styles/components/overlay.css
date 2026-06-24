@@ -1,0 +1,28 @@
+.overlay {
+    margin-top: 118px;
+    padding: 18px 30px;
+    border: none;
+    background-color: var(--color-light);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.overlay__title {
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.overlay__new-task-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 253px;
+}
+
+.overlay__actions {
+    display: flex;
+    justify-content: space-between;
+}
