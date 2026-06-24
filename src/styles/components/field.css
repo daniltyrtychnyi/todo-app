@@ -1,7 +1,4 @@
 .field {
-    --fieldInputPaddingX: 16px;
-    --fieldInputSearchIconSize: 21px;
-
     position: relative;
     font-family: var(--font-family-accent);
 
@@ -15,13 +12,16 @@
 .field__label {
     position: absolute;
     top: 50%;
-    left: var(--fieldInputPaddingX);
+    left: 17px;
     translate: 0 -50%;
     color: var(--color-accent-light);
     pointer-events: none;
 }
 
 .field__input {
+    --fieldInputPaddingX: 16px;
+    --fieldInputSearchIconSize: 21px;
+
     width: 100%;
     padding-inline: var(--fieldInputPaddingX);
     height: var(--input-height);

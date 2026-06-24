@@ -34,11 +34,11 @@
     column-gap: 17px;
 
     &:not(:first-child) {
-        padding-top: 17px;
+        padding-top: 10px;
     }
 
     &:not(:last-child) {
-        padding-bottom: 17px;
+        padding-bottom: 10px;
         border-bottom: 1px solid rgba(108, 99, 255, 0.5);
     }
 }
@@ -62,5 +62,5 @@
 .todo__new-task-button {
     justify-self: end;
     margin-right: 8px;
-    translate: 0 20em;
+    translate: 0 15em;
 }
