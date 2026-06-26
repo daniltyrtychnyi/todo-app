@@ -43,7 +43,7 @@ class Todo {
             filteredItems: null,
             searchQuery: '',
         }
-        this.saveId = null
+        this.editingTaskId = null
         this.render()
         this.bindEvents()
     }
@@ -149,13 +149,15 @@ class Todo {
     editItem(id, newTitle) {
         const editableItem = this.state.items.find((item) => item.id === id)
 
-        console.log(editableItem)
-        if (editableItem) {
+        if (!editableItem) return
+
+        if (editableItem.title !== newTitle) {
             editableItem.title = newTitle
-            this.saveId = null
-            this.saveItemsToLocalStorage()
+            this.saveItemsToLocalStorage()  
             this.render()
         }
+
+        this.editingTaskId = null
     }
 
     deleteItem(id) {
@@ -200,7 +202,7 @@ class Todo {
 
     onNewTaskFormCancel = () => {
         this.overlayElement.close()
-        this.saveId = null
+        this.editingTaskId = null
         this.newTaskInputElement.value = ''
     }
 
@@ -214,15 +216,15 @@ class Todo {
             return
         }
 
-        if (this.saveId === null) {
+        if (this.editingTaskId === null) {
             this.addItem(newTodoItemTitle)
         } else {
-            this.editItem(this.saveId, newTodoItemTitle)
+            this.editItem(this.editingTaskId, newTodoItemTitle)
         }
 
         this.overlayElement.close()
         this.newTaskInputElement.value = ''
-        this.saveId = null
+        this.editingTaskId = null
     }
 
     onChange = ({ target }) => {
@@ -250,7 +252,7 @@ class Todo {
             const itemCheckboxElement = itemElement.querySelector(this.selectors.itemCheckbox)
             const oldItemTitle = itemElement.querySelector(this.selectors.itemLabel)
 
-            this.saveId = itemCheckboxElement.id
+            this.editingTaskId = itemCheckboxElement.id
 
             this.newTaskInputElement.value = oldItemTitle.textContent
             this.overlayElement.showModal()

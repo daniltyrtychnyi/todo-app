@@ -82,4 +82,8 @@
     .todo__controls {
         column-gap: 8px;
     }
+    
+    .todo__new-task-button {
+        right: 5%;
+    }
 }
