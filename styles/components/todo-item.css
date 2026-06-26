@@ -1,4 +1,12 @@
 .todo-item {
+    position: relative;
+    
+    &:hover {
+        .todo-item__actions {
+            opacity: 1;
+        }
+    }
+
     &.is-disappearing {
         opacity: 0;
         translate: 0 -65%;
@@ -49,11 +57,6 @@
             text-decoration: line-through;
             color: var(--color-grey);
         }
-
-        & ~ .todo-item__actions {
-            opacity: 0;
-            visibility: hidden;
-        }
     }
 }
 
@@ -65,9 +68,11 @@
 }
 
 .todo-item__actions {
+    opacity: 0;
     display: flex;
     column-gap: 10px;
     margin-left: auto;
+    transition-duration: var(--transition-duration);
 }
 
 .todo-item__edit-button,

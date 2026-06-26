@@ -7,6 +7,7 @@ class Todo {
         item: '[data-js-todo-item]',
         itemCheckbox: '[data-js-todo-item-checkbox]',
         itemLabel: '[data-js-todo-item-label]',
+        itemActions: '[data-js-todo-item-actions]',
         itemEditButton: '[data-js-todo-item-edit-button]',
         itemDeleteButton: '[data-js-todo-item-delete-button]',
         emptyMessage: '[data-js-todo-empty-message]',
@@ -42,6 +43,7 @@ class Todo {
             filteredItems: null,
             searchQuery: '',
         }
+        this.saveId = null
         this.render()
         this.bindEvents()
     }
@@ -71,22 +73,31 @@ class Todo {
         )
     }
 
+    escapeHTML(text) {
+        const divElement = document.createElement('div')
+        divElement.textContent = text
+
+        return divElement.innerHTML
+    }
+
     render() {
         const items = this.state.filteredItems ?? this.state.items
 
         this.listElement.innerHTML = items.map(({ id, title, isChecked }) => `
             <li class="todo__item todo-item" data-js-todo-item>
-                <input id="${id}" type="checkbox" class="todo-item__checkbox" ${isChecked ? 'checked' : ''} data-js-todo-item-checkbox>
-                <label for="${id}" class="todo-item__label" data-js-todo-item-label>${title}</label>
+                <input id="${id}" type="checkbox" class="todo-item__checkbox" data-js-todo-item-checkbox>
+                <label for="${id}" class="todo-item__label" data-js-todo-item-label>${this.escapeHTML(title)}</label>
                 <div class="todo-item__actions">
-                    <button class="todo-item__edit-button" type="button" aria-label="Edit task" title="Edit task" data-js-todo-item-edit-button>
+                    <button class="todo-item__edit-button" type="button" aria-label="Edit task" title="Edit task"
+                        data-js-todo-item-edit-button>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M12.0091 9.32736L14.4018 6.93468L14.4025 6.93398C14.7324 6.60414 14.8974 6.43916 14.9592 6.24885C15.0136 6.08133 15.0136 5.90088 14.9592 5.73337C14.8973 5.54292 14.7321 5.37769 14.4018 5.04738L12.9506 3.59625C12.6217 3.26735 12.4569 3.10257 12.2669 3.04082C12.0993 2.98639 11.9189 2.98639 11.7514 3.04082C11.5612 3.10261 11.3962 3.26759 11.0669 3.59695L11.0654 3.59837L8.67272 5.99106L2 12.6637V16H5.33636L12.0091 9.32736ZM8.67272 5.99106L12.0091 9.32736"
                                 stroke="#CDCDCD" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <button class="todo-item__delete-button" type="button" aria-label="Delete" title="Delete" data-js-todo-item-delete-button>
+                    <button class="todo-item__delete-button" type="button" aria-label="Delete" title="Delete"
+                        data-js-todo-item-delete-button>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M3.87414 7.61505C3.80712 6.74386 4.49595 6 5.36971 6H12.63C13.5039 6 14.1927 6.74385 14.1257 7.61505L13.6064 14.365C13.5463 15.1465 12.8946 15.75 12.1108 15.75H5.88894C5.10514 15.75 4.45348 15.1465 4.39336 14.365L3.87414 7.61505Z"
@@ -135,6 +146,18 @@ class Todo {
         this.saveItemsToLocalStorage()
     }
 
+    editItem(id, newTitle) {
+        const editableItem = this.state.items.find((item) => item.id === id)
+
+        console.log(editableItem)
+        if (editableItem) {
+            editableItem.title = newTitle
+            this.saveId = null
+            this.saveItemsToLocalStorage()
+            this.render()
+        }
+    }
+
     deleteItem(id) {
         this.state.items = this.state.items.filter((item) => item.id !== id)
         this.render()
@@ -177,6 +200,8 @@ class Todo {
 
     onNewTaskFormCancel = () => {
         this.overlayElement.close()
+        this.saveId = null
+        this.newTaskInputElement.value = ''
     }
 
     onNewTaskFormSubmit = (event) => {
@@ -184,11 +209,20 @@ class Todo {
 
         const newTodoItemTitle = this.newTaskInputElement.value
 
-        if (newTodoItemTitle.trim().length > 0) {
-            this.addItem(newTodoItemTitle)
-            this.overlayElement.close()
-            this.newTaskInputElement.value = ''
+        if (newTodoItemTitle.trim().length === 0) {
+            this.newTaskInputElement.focus()
+            return
         }
+
+        if (this.saveId === null) {
+            this.addItem(newTodoItemTitle)
+        } else {
+            this.editItem(this.saveId, newTodoItemTitle)
+        }
+
+        this.overlayElement.close()
+        this.newTaskInputElement.value = ''
+        this.saveId = null
     }
 
     onChange = ({ target }) => {
@@ -213,7 +247,10 @@ class Todo {
     onEditClick = ({ target }) => {
         if (target.matches(this.selectors.itemEditButton)) {
             const itemElement = target.closest(this.selectors.item)
+            const itemCheckboxElement = itemElement.querySelector(this.selectors.itemCheckbox)
             const oldItemTitle = itemElement.querySelector(this.selectors.itemLabel)
+
+            this.saveId = itemCheckboxElement.id
 
             this.newTaskInputElement.value = oldItemTitle.textContent
             this.overlayElement.showModal()

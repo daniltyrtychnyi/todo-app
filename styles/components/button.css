@@ -18,6 +18,13 @@
 
 .button--switcher {
     padding-inline: 8px;
+
+    &::before {
+        content: '';
+        width: 22px;
+        height: 22px;
+        background: var(--icon-theme-switcher) center/contain no-repeat;
+    }
 }
 
 .button--circle {

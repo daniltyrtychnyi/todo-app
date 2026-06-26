@@ -3,9 +3,9 @@
     font-family: var(--font-family-accent);
 
     &:has(.field__input:not(:placeholder-shown)) .field__label {
-        translate: -1.5em -2.3em;
+        translate: -1.6em -2.3em;
         scale: 0.8;
-        color: var(--color-accent);
+        color: var(--color-field);
     }
 }
 
@@ -14,7 +14,7 @@
     top: 50%;
     left: 17px;
     translate: 0 -50%;
-    color: var(--color-accent-light);
+    color: var(--color-field);
     pointer-events: none;
 }
 
@@ -25,16 +25,16 @@
     width: 100%;
     padding-inline: var(--fieldInputPaddingX);
     height: var(--input-height);
-    color: var(--color-accent);
+    color: var(--color-field-text);
     background-color: transparent;
     border-radius: var(--border-radius);
-    border: var(--border);
+    border: var(--border-field);
     outline: 2px solid transparent;
     outline-offset: 0px;
 
     &:hover,
     &:focus {
-        outline-color: var(--color-accent-light);
+        outline-color: var(--color-field);
     }
 
     &[type="search"] {
@@ -49,3 +49,9 @@
         }
     }
 }
+
+ @media (max-width: 400px) {
+    .todo__search-task-form .field__label {
+        opacity: 0;
+    }
+} 

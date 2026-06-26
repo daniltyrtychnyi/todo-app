@@ -5,6 +5,9 @@
     border-radius: 16px;
     width: 100%;
     max-width: 500px;
+    border: 1px solid transparent;
+    color: var(--color-text);
+    background-color: var(--color-bg);
 
     &::backdrop {
         background: rgba(37, 37, 37, 0.7);
@@ -32,4 +35,11 @@
 .overlay__actions {
     display: flex;
     justify-content: space-between;
+}
+
+
+@media (max-width: 767px) {
+    .overlay {
+        max-width: 300px;
+    }
 }

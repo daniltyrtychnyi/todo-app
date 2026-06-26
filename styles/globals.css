@@ -1,13 +1,39 @@
+html.is-dark-theme {
+    --color-bg: var(--color-dark);
+
+    --color-text: var(--color-light);
+
+    --color-border: var(--color-light);
+
+    --color-field: var(--color-grey-light);
+    --color-field-text: var(--color-light);
+    --color-field-border: var(--color-light);
+
+    --empty-message-image: url(../../images/empty-message_dark.png);
+
+    --icon-theme-switcher: url('../../images/icons/icon-theme-switcher_dark.svg');
+
+    .field__input[type="search"] {
+        &:placeholder-shown {
+            background-image: url('../images/icons/icon-search_white.svg');
+        }
+    }
+
+    .overlay {
+        border-color: var(--color-border);
+    }
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: start;
-    padding: 40px 100px;
     min-height: 710px;
     font-family: var(--font-family-base);
     font-weight: 500;
     line-height: 1;
-    background-color: var(--color-light);
+    color: var(--color-text);
+    background-color: var(--color-bg);
 }
 
 label,
@@ -18,7 +44,7 @@ button {
 }
 
 :focus-visible {
-    outline: 2px dashed var(--color-dark);
+    outline: 2px dashed var(--color-border);
     outline-offset: 4px;
     transition-duration: 0s !important;
 }
