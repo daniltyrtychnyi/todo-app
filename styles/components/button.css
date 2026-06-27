@@ -10,11 +10,6 @@
     text-transform: uppercase;
     font-size: 18px;
     box-shadow: var(--box-shadow);
-
-    &:hover {
-        background-color: var(--color-accent-dark);
-        border-color: var(--color-accent);
-    }
 }
 
 .button--switcher {
@@ -39,8 +34,25 @@
 .button--transparent {
     color: var(--color-accent);
     background-color: transparent;
+}
 
-    &:hover {
+@media (hover: hover) {
+    .button {
+        &:active,
+        &:hover {
+            background-color: var(--color-accent-dark);
+            border-color: var(--color-accent);
+            scale: 1.05;
+        }
+    }
+
+    .button--transparent:hover {
         color: var(--color-light);
+    }
+}
+
+@media (hover: none) {
+    .button:active {
+        scale: 1.05;
     }
 }

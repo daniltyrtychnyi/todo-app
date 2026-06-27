@@ -9,7 +9,7 @@ html.is-dark-theme {
     --color-field-text: var(--color-light);
     --color-field-border: var(--color-light);
 
-    --empty-message-image: url(../../images/empty-message_dark.png);
+    --empty-message-image: url(../../images/empty-message_dark.svg);
 
     --icon-theme-switcher: url('../../images/icons/icon-theme-switcher_dark.svg');
 

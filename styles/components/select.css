@@ -28,6 +28,13 @@
         width: 10px;
         height: 10px;
         background: url(../../images/icons/icon-arrow_light.svg) center/contain no-repeat;
+        transition-duration: inherit;
+    }
+
+    &.is-expanded {
+        &::after {
+            rotate: -180deg;
+        }
     }
 }
 
@@ -36,8 +43,6 @@
     top: 100%;
     z-index: 10;
     display: grid;
-    row-gap: 8px;
-    padding: 8px 6px;
     width: 100%;
     font-weight: 400;
     color: var(--color-accent);
@@ -45,6 +50,7 @@
     border: var(--border);
     border-radius: var(--border-radius);
     transition-duration: var(--transition-duration);
+    transform-origin: top;
 
     &:not(.is-expanded) {
         opacity: 0;
@@ -56,11 +62,10 @@
 .select__option {
     display: inline-flex;
     align-items: center;
-    min-height: 24px;
+    padding: 8px 6px;    
 
+    &.is-selected,
     &.is-current {
-        padding-inline: 6px;
-        margin-inline: -6px;
         background-color: rgba(108, 99, 255, 0.2);
     }
 }

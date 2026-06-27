@@ -1,11 +1,5 @@
 .todo-item {
     position: relative;
-    
-    &:hover {
-        .todo-item__actions {
-            opacity: 1;
-        }
-    }
 
     &.is-disappearing {
         opacity: 0;
@@ -13,7 +7,7 @@
         transition-duration: calc(var(--transition-duration) * 2);
         pointer-events: none;
 
-        & ~ .todo-item {
+        &~.todo-item {
             translate: 0 -100%;
             transition-delay: var(--transition-duration);
             transition-duration: var(--transition-duration);
@@ -52,7 +46,7 @@
             background: url('../../images/icons/icon-check_white.svg') center/contain no-repeat;
         }
 
-        & + .todo-item__label {
+        &+.todo-item__label {
             font-weight: 400;
             text-decoration: line-through;
             color: var(--color-grey);
@@ -85,24 +79,47 @@
     border: none;
     color: var(--color-grey);
 
-    &:hover,
-    &:active {
-        scale: 1.05;
-    }
-
     * {
         pointer-events: none;
     }
 }
 
-.todo-item__edit-button {
-    &:hover {
-        color: var(--color-accent);
+@media (hover: hover) {
+    .todo-item {
+        &:hover .todo-item__actions {
+            opacity: 1;
+        }
+    }
+
+    .todo-item__edit-button,
+    .todo-item__delete-button {
+        &:hover {
+            scale: 1.05;
+        }
+    }
+
+    .todo-item__edit-button {
+        &:hover {
+            color: var(--color-accent);
+        }
+    }
+
+    .todo-item__delete-button {
+        &:hover {
+            color: var(--color-red);
+        }
     }
 }
 
-.todo-item__delete-button {
-    &:hover {
-        color: var(--color-red);
+@media (hover: none) {
+    .todo-item__actions {
+        opacity: 1;
+    }
+
+    .todo-item__edit-button,
+    .todo-item__delete-button {
+        &:active {
+            scale: 1.05;
+        }
     }
 }

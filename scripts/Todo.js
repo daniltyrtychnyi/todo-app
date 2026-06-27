@@ -1,4 +1,6 @@
-class Todo {
+import BaseComponent from "./BaseComponent.js"
+
+class Todo extends BaseComponent {
     selectors = {
         root: '[data-js-todo]',
         searchTaskForm: '[data-js-todo-search-task-form]',
@@ -27,6 +29,7 @@ class Todo {
     localStorageKey = 'todo-items'
 
     constructor() {
+        super()
         this.rootElement = document.querySelector(this.selectors.root)
         this.searchTaskFormElement = this.rootElement.querySelector(this.selectors.searchTaskForm)
         this.searchTaskInputElement = this.rootElement.querySelector(this.selectors.searchTaskInput)
@@ -37,12 +40,12 @@ class Todo {
         this.newTaskFormElement = this.overlayElement.querySelector(this.selectors.newTaskForm)
         this.newTaskInputElement = this.overlayElement.querySelector(this.selectors.newTaskInput)
         this.newTaskFormCancelButtonElement = this.overlayElement.querySelector(this.selectors.newTaskFormCancelButton)
-        this.state = {
+        this.state = this.getProxyState({
             items: this.getItemsFromLocalStorage(),
             filteredStatus: '',
             filteredItems: null,
             searchQuery: '',
-        }
+        })
         this.editingTaskId = null
         this.render()
         this.bindEvents()
@@ -85,7 +88,7 @@ class Todo {
 
         this.listElement.innerHTML = items.map(({ id, title, isChecked }) => `
             <li class="todo__item todo-item" data-js-todo-item>
-                <input id="${id}" type="checkbox" class="todo-item__checkbox" data-js-todo-item-checkbox>
+                <input id="${id}" type="checkbox" class="todo-item__checkbox" ${isChecked ? 'checked' : ''} data-js-todo-item-checkbox>
                 <label for="${id}" class="todo-item__label" data-js-todo-item-label>${this.escapeHTML(title)}</label>
                 <div class="todo-item__actions">
                     <button class="todo-item__edit-button" type="button" aria-label="Edit task" title="Edit task"
@@ -127,43 +130,39 @@ class Todo {
 
             return titleFormatted.includes(queryFormatted)
         })
-        this.render()
     }
 
     resetFilter() {
         this.state.filteredItems = null
         this.state.searchQuery = ''
-        this.render()
     }
 
     addItem(title) {
-        this.state.items.push({
+        const newItem = {
             id: crypto?.randomUUID() ?? Date.now().toString(),
             title,
             isChecked: false,
-        })
-        this.render()
-        this.saveItemsToLocalStorage()
+        }
+        this.state.items = [...this.state.items, newItem]
     }
 
     editItem(id, newTitle) {
-        const editableItem = this.state.items.find((item) => item.id === id)
+        this.state.items = this.state.items.map((item) => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    title: newTitle,
+                }
+            }
 
-        if (!editableItem) return
-
-        if (editableItem.title !== newTitle) {
-            editableItem.title = newTitle
-            this.saveItemsToLocalStorage()  
-            this.render()
-        }
+            return item
+        })
 
         this.editingTaskId = null
     }
 
     deleteItem(id) {
         this.state.items = this.state.items.filter((item) => item.id !== id)
-        this.render()
-        this.saveItemsToLocalStorage()
     }
 
     toggleCheckedState(id) {
@@ -177,7 +176,6 @@ class Todo {
 
             return item
         })
-        this.saveItemsToLocalStorage()
     }
 
     onSearchTaskFormSubmit = (event) => {

@@ -8,6 +8,20 @@
     border: 1px solid transparent;
     color: var(--color-text);
     background-color: var(--color-bg);
+    transition: 
+        scale var(--transition-duration),
+        display var(--transition-duration) allow-discrete,
+        overlay var(--transition-duration) allow-discrete;
+    scale: 1;
+    transform-origin: top;
+
+    @starting-style {
+        scale: 0;
+    }
+
+    &:not([open]) {
+        scale: 0;
+    }
 
     &::backdrop {
         background: rgba(37, 37, 37, 0.7);
