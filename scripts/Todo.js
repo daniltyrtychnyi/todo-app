@@ -265,7 +265,7 @@ class Todo extends BaseComponent {
     bindEvents() {
         this.searchTaskFormElement.addEventListener('submit', this.onSearchTaskFormSubmit)
         this.searchTaskInputElement.addEventListener('input', this.onSearchTaskInputChange)
-        this.originalControlElement.addEventListener('selectChange', this.onOriginalControlChange)
+        this.originalControlElement.addEventListener('change', this.onOriginalControlChange)
         this.newTaskButtonElement.addEventListener('click', this.onNewTaskButtonClick)
         this.newTaskFormElement.addEventListener('click', this.onNewTaskFormClick)
         this.newTaskFormElement.addEventListener('submit', this.onNewTaskFormSubmit)

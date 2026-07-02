@@ -170,7 +170,7 @@ class CustomSelect extends BaseComponent {
             this.state.selectedOptionElement = target
             this.state.currentOptionIndex =
                 [...this.optionElements].findIndex((optionElement) => optionElement === target)
-            this.originalControlElement.dispatchEvent(new Event('selectChange'))
+            this.originalControlElement.dispatchEvent(new Event('change'))
             this.collapse()
         }
     }
