@@ -1,7 +1,7 @@
 class BaseComponent {
     constructor() {
         if (this.constructor === BaseComponent) {
-            throw new Error('Нельзя вызвать метод constructor абстрактного класса BaseComponent')
+            throw new Error('Невозможно вызвать метод constructor абстрактного класса BaseComponent!')
         }
     }
 
@@ -17,20 +17,17 @@ class BaseComponent {
                 target[prop] = newValue
 
                 if (oldValue !== newValue) {
-                    this.render()
-                    this.saveItemsToLocalStorage()
+                    this.updateUI()
                 }
 
                 return true
-            },
+            }
         })
     }
 
-    render() {
-        throw new Error('Необходимо реализовать метод render!')
+    updateUI() {
+        throw new Error('Необходимо создать метод updateUI!')
     }
-
-    saveItemsToLocalStorage() {}
 }
 
 export default BaseComponent

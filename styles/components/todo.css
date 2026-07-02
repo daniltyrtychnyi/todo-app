@@ -72,6 +72,10 @@
     position: fixed;
     top: 85%;
     justify-self: end;
+
+    * {
+        pointer-events: none;
+    }
 }
 
 @media (max-width: 767px) {

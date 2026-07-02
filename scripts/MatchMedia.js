@@ -1,5 +1,5 @@
-const matchMedia = {
+const MatchMedia = {
     mobile: window.matchMedia('(width <= 767.98px)'),
 }
 
-export default matchMedia
+export default MatchMedia

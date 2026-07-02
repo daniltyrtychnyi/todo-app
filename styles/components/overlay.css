@@ -49,6 +49,10 @@
 .overlay__actions {
     display: flex;
     justify-content: space-between;
+
+    * {
+        user-select: none;
+    }
 }
 
 

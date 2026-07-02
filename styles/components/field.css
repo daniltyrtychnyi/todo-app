@@ -39,9 +39,8 @@
 
     &[type="search"] {
         &:placeholder-shown {
-            padding-right: 
-                calc((var(--fieldInputPaddingX) * 2) + var(--fieldInputSearchIconSize))
-            ;
+            padding-right:
+                calc((var(--fieldInputPaddingX) * 2) + var(--fieldInputSearchIconSize));
             background-image: url('../../images/icons/icon-search_accent.svg');
             background-position: calc(100% - var(--fieldInputPaddingX)) 50%;
             background-size: var(--fieldInputSearchIconSize);
@@ -50,8 +49,8 @@
     }
 }
 
- @media (max-width: 400px) {
+@media (max-width: 400px) {
     .todo__search-task-form .field__label {
         opacity: 0;
     }
-} 
+}

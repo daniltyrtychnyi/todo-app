@@ -1,5 +1,5 @@
 .select__original-control {
-    padding-inline: 10px;
+    padding-inline: 0;
 }
 
 .select__body {
@@ -43,6 +43,7 @@
     top: 100%;
     z-index: 10;
     display: grid;
+    min-width: 93px;
     width: 100%;
     font-weight: 400;
     color: var(--color-accent);
@@ -62,11 +63,19 @@
 .select__option {
     display: inline-flex;
     align-items: center;
-    padding: 8px 6px;    
+    justify-content: space-between;
+    padding: 8px 4px;
+    min-width: inherit;
+    border: 1px solid transparent;
+    border-radius: inherit;
 
-    &.is-selected,
-    &.is-current {
+    &.is-selected {
         background-color: rgba(108, 99, 255, 0.2);
+    }
+
+    &.is-current,
+    &:hover {
+        border-color: var(--color-accent);
     }
 }
 

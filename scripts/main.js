@@ -1,7 +1,7 @@
-import Todo from './Todo.js';
-import ThemeSwitcher from './ThemeSwitcher.js';
-import CustomSelectCollection from './CustomSelect.js';
+import Todo from './Todo.js'
+import CustomSelect  from "./CustomSelect.js"
+import ThemeSwitcher from "./ThemeSwitcher.js"
 
 new Todo()
+new CustomSelect()
 new ThemeSwitcher()
-new CustomSelectCollection()
