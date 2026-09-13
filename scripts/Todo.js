@@ -1,5 +1,4 @@
 import BaseComponent from './BaseComponent.js'
-import CustomSelect from './CustomSelect.js'
 
 class Todo extends BaseComponent {
     selectors = {
@@ -236,13 +235,14 @@ class Todo extends BaseComponent {
 
         const itemCheckboxElement = itemElement.querySelector(this.selectors.itemCheckbox)
         const currentTaskId = itemCheckboxElement.id
+        const deleteTaskDelay = 400
 
         if (target.matches(this.selectors.itemDeleteButton)) {
             itemElement.classList.add(this.stateClasses.isDisappearing)
 
             setTimeout(() => {
                 this.deleteTask(currentTaskId)
-            }, 400)
+            }, deleteTaskDelay)
 
             return
         }

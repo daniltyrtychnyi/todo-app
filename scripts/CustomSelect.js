@@ -63,7 +63,7 @@ class CustomSelect extends BaseComponent {
             this.buttonElement.setAttribute(this.stateAttributes.ariaExpanded, isExpanded)
             this.buttonElement.setAttribute(
                 this.stateAttributes.ariaActiveDescendant,
-                this.optionElements[this.state.currentOptionIndex].id
+                this.optionElements[currentOptionIndex].id
             )
         }
 
@@ -73,8 +73,8 @@ class CustomSelect extends BaseComponent {
 
         const updateOption = () => {
             this.optionElements.forEach((optionElement, index) => {
-                const isCurrent = this.state.currentOptionIndex === index
-                const isSelected = this.state.selectedOptionElement === optionElement
+                const isCurrent = currentOptionIndex === index
+                const isSelected = selectedOptionElement === optionElement
 
                 optionElement.classList.toggle(this.stateClasses.isCurrent, isCurrent)
                 optionElement.classList.toggle(this.stateClasses.isSelected, isSelected)
@@ -197,8 +197,8 @@ class CustomSelect extends BaseComponent {
     }
 
     onOriginalControlChange = () => {
-        this.state.currentOptionIndex = this.originalControlElement.selectedIndex
         this.state.selectedOptionElement = this.optionElements[this.originalControlElement.selectedIndex]
+        this.state.currentOptionIndex = this.originalControlElement.selectedIndex
     }
 
     bindEvents() {
